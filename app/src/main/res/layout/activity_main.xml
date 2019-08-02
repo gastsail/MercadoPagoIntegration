@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+    <LinearLayout
+            android:id="@+id/mpsdkRegularLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <Button
+                android:layout_width='match_parent'
+                android:layout_height='50dp'
+                android:layout_marginTop='25dp'
+                android:gravity='center'
+                android:id="@+id/btnSubmitProducto"
+                android:text='Setear Producto'
+                android:onClick='submitProducto'/>
+
+        <Button
+                android:layout_width='match_parent'
+                android:layout_height='50dp'
+                android:layout_marginTop='25dp'
+                android:gravity='center'
+                android:id="@+id/btnPagar"
+                android:enabled="false"
+                android:text='Pagar'
+                android:onClick='submit'/>
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:id="@+id/progressBar"/>
+
+        </RelativeLayout>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/txt_status"/>
+
+        <TextView
+                android:layout_width='match_parent'
+                android:layout_height='wrap_content'
+                android:id='@+id/mp_results'
+                android:paddingTop='50dp'/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
