@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".ui.ProductCheckoutFragment">
+
+
+    <ImageView
+            android:id="@+id/productInfo_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@mipmap/ic_launcher"/>
+
+    <TextView
+            android:id="@+id/productInfoTitle_txtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Sample Title"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"/>
+
+    <TextView
+            android:id="@+id/productInfoDesc_txtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Sample description goes here"/>
+
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+        <TextView
+                android:id="@+id/productPriceInfo_txtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/precio"
+                android:textSize="25sp"
+                android:layout_centerInParent="true"
+                android:text="$100"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            <EditText
+                    android:id="@+id/cupon_etxt"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"/>
+
+            <Button android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_aplicarDescuento"
+                    android:text="Aplicar"
+                    android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_centerHorizontal="true"
+                android:text="Ingresar cupon de descuento"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+
+        <Button
+                android:id="@+id/btnPagar"
+                android:text="pagar"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

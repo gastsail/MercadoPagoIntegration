@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph" app:startDestination="@id/mainFragment">
+
+    <fragment android:id="@+id/mainFragment" android:name="com.gaston.meliintegration.ui.MainFragment"
+              android:label="MainFragment"
+              tools:layout="@layout/fragment_main">
+        <action android:id="@+id/next_action"
+                app:destination="@id/productCheckoutFragment" app:enterAnim="@animator/px_card_flip_right_in"
+                app:exitAnim="@animator/px_card_flip_left_out" app:popEnterAnim="@animator/px_card_flip_left_in"
+                app:popExitAnim="@animator/px_card_flip_right_out" app:popUpTo="@+id/mainFragment"/>
+    </fragment>
+    <fragment android:id="@+id/productCheckoutFragment"
+              android:name="com.gaston.meliintegration.ui.ProductCheckoutFragment"
+              android:label="fragment_product_checkout" tools:layout="@layout/fragment_product_checkout">
+        <argument android:name="productTitle" app:argType="string"/>
+        <argument android:name="productDesc" app:argType="string"/>
+        <argument android:name="productPrice" app:argType="integer"/>
+        <argument android:name="imageUri" app:argType="android.net.Uri"/>
+    </fragment>
+</navigation>

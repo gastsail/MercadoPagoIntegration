@@ -1,4 +1,4 @@
-package com.gaston.meliintegration
+package com.gaston.meliintegration.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,16 +10,18 @@ import kotlinx.android.synthetic.main.activity_main.*
 import com.mercadopago.android.px.internal.util.JsonUtil
 import com.mercadopago.android.px.model.Payment
 import com.mercadopago.android.px.model.exceptions.MercadoPagoError
-import android.R.attr.data
 import android.util.Log
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.gaston.meliintegration.R
+import com.gaston.meliintegration.data.ProductsDataSet
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QueryDocumentSnapshot
+import kotlinx.android.synthetic.main.main.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
-    val public_key = "TEST-6b856807-3cca-46c4-b25f-ebab4943a316"
+    val public_key = "PUBLIC_KEY"
     val CHECKOUT_REQUEST_CODE = 1
     var checkout: MercadoPagoCheckout? = null
     private val db = FirebaseFirestore.getInstance()
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun setupCheckOut(public_key:String,preference_id:String){
+   /* fun setupCheckOut(public_key:String, preference_id:String){
         checkout = MercadoPagoCheckout.Builder(public_key, preference_id)
             .build()
     }
@@ -104,5 +106,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
+    }*/
 }

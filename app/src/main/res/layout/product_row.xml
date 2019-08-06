@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="10dp">
+
+    <ImageView
+            android:id="@+id/product_imageView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@mipmap/ic_launcher"/>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+        <TextView
+                android:id="@+id/product_title_txtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Sample Title"/>
+
+
+        <TextView
+                android:id="@+id/product_desc_txtView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:text="Sample Title"/>
+
+    </LinearLayout>
+
+
+    <TextView
+            android:id="@+id/product_price_txtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
+            android:gravity="end|center"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/precio"
+            android:text="$100"
+    />
+
+
+</LinearLayout>
