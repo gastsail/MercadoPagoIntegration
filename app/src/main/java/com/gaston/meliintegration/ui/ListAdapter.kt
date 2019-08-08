@@ -14,7 +14,8 @@ import com.gaston.meliintegration.ui.model.Products
 /**
  * Created by Gastón Saillén on 05 August 2019
  */
-class ListAdapter(val context: Context,val productsList:List<Products> ):BaseAdapter() {
+class ListAdapter(val context: Context, val productsList: List<Products>) :
+    BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
@@ -32,7 +33,7 @@ class ListAdapter(val context: Context,val productsList:List<Products> ):BaseAda
             productDesc.isSelected = true
             productDesc.text = productObj.productDesc
             val productPrice = rowView.findViewById<TextView>(R.id.product_price_txtView)
-            productPrice.text = "$"+productObj.productPrice.toString()
+            productPrice.text = "$" + productObj.productPrice.toString()
         } else {
             rowView = convertView
         }
@@ -49,9 +50,9 @@ class ListAdapter(val context: Context,val productsList:List<Products> ):BaseAda
     }
 
     override fun getCount(): Int {
-        return if(productsList.isNotEmpty()){
-             productsList.size
-        }else{
+        return if (productsList.isNotEmpty()) {
+            productsList.size
+        } else {
             0
         }
 

@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.main.*
 
 class MainActivity : AppCompatActivity(){
 
-    val public_key = "PUBLIC_KEY"
+    val public_key = "TEST-81d946e6-87be-4004-a302-39dd463cd449"
     val CHECKOUT_REQUEST_CODE = 1
     var checkout: MercadoPagoCheckout? = null
     private val db = FirebaseFirestore.getInstance()
