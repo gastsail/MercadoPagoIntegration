@@ -29,7 +29,8 @@ class MainFragment : Fragment(),MainViewContract.MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel = requireActivity().run {
-            ViewModelProviders.of(this,ViewModelFactory(RequestListDataUseCase())).get(MainViewModel::class.java)
+            ViewModelProviders.of(this,ViewModelFactory(RequestListDataUseCase()
+            )).get(MainViewModel::class.java)
         }
     }
 

@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".ui.ProductCheckoutFragment">
+              tools:context=".ui.checkout.ProductCheckoutFragment">
 
 
     <ImageView
@@ -85,6 +85,15 @@
                 android:layout_centerInParent="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+        <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"
+                android:visibility="gone"
+                android:layout_centerInParent="true"
+                android:layout_alignParentBottom="true"
+                android:elevation="4dp"/>
 
     </RelativeLayout>
 

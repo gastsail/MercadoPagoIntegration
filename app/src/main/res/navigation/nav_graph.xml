@@ -12,7 +12,7 @@
                 app:popExitAnim="@animator/px_card_flip_right_out" app:popUpTo="@+id/mainFragment"/>
     </fragment>
     <fragment android:id="@+id/productCheckoutFragment"
-              android:name="com.gaston.meliintegration.ui.ProductCheckoutFragment"
+              android:name="com.gaston.meliintegration.ui.checkout.ProductCheckoutFragment"
               android:label="fragment_product_checkout" tools:layout="@layout/fragment_product_checkout">
         <argument android:name="productTitle" app:argType="string"/>
         <argument android:name="productDesc" app:argType="string"/>

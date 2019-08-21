@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(){
 
     }
 
-    //Wait for the preference_id to proceed to checkout
+    //Wait for the preference_id to proceed to setupCheckout
     fun waitForPreferenceId(docKey:String){
 
         val docRef = db.collection("melitest").document(docKey)
@@ -100,9 +100,9 @@ class MainActivity : AppCompatActivity(){
                     val mercadoPagoError = JsonUtil.getInstance()
                         .fromJson(data.getStringExtra("mercadoPagoError"), MercadoPagoError::class.java)
                     mp_results.text = "Error: " + mercadoPagoError.message
-                    //Resolve error in checkout
+                    //Resolve error in setupCheckout
                 } else {
-                    //Resolve canceled checkout
+                    //Resolve canceled setupCheckout
                 }
             }
         }
