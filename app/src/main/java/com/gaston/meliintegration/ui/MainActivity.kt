@@ -2,21 +2,9 @@ package com.gaston.meliintegration.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.app.Activity
-import android.content.Intent
-import android.view.View
 import com.mercadopago.android.px.core.MercadoPagoCheckout
-import kotlinx.android.synthetic.main.activity_main.*
-import com.mercadopago.android.px.internal.util.JsonUtil
-import com.mercadopago.android.px.model.Payment
-import com.mercadopago.android.px.model.exceptions.MercadoPagoError
-import android.util.Log
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.gaston.meliintegration.R
-import com.gaston.meliintegration.data.ProductsDataSet
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.main.*
 
 
 class MainActivity : AppCompatActivity(){

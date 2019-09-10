@@ -1,6 +1,6 @@
 package com.gaston.meliintegration.domain
 
-import com.gaston.meliintegration.data.ProductsDataSet
+import com.gaston.meliintegration.data.local.ProductsDataSet
 import com.gaston.meliintegration.ui.model.Products
 
 /**

@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 
 import com.gaston.meliintegration.R
-import com.gaston.meliintegration.data.ProductsDataSet
 import com.gaston.meliintegration.domain.RequestListDataUseCase
 import com.gaston.meliintegration.ui.model.Products
 import com.gaston.meliintegration.viewmodel.MainViewModel

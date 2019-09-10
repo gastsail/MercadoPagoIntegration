@@ -35,6 +35,7 @@ abstract class BaseFragment<T: ViewModel>: Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+
     @LayoutRes
     abstract fun getLayout():Int
 

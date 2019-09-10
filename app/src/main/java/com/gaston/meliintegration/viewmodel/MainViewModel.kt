@@ -18,13 +18,13 @@ class MainViewModel(private val productsUseCase: RequestListDataUseCase):ViewMod
         getProductList()
     }
 
-    fun setProducts(products: List<Products>){
-        listProducts.value = products
+    //Aca se podria reemplazar por corutinas si fuera asyncrono.
+    private fun getProductList(){
+        setProducts(productsUseCase.getProductsList())
     }
 
-    //Aca se podria reemplazar por corutinas si fuera asyncrono.
-    fun getProductList(){
-        setProducts(productsUseCase.getProductsList())
+    private fun setProducts(products: List<Products>){
+        listProducts.value = products
     }
 
     fun getProductListLiveData():LiveData<List<Products>>{
