@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 
 import com.gaston.meliintegration.R
 import com.gaston.meliintegration.domain.RequestListDataUseCase
-import com.gaston.meliintegration.ui.model.Products
+import com.gaston.meliintegration.data.model.Products
 import com.gaston.meliintegration.viewmodel.MainViewModel
 import com.gaston.meliintegration.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.main.*
@@ -53,7 +53,6 @@ class MainFragment : Fragment(),MainViewContract.MainView {
 
     override fun setupViewModelObserver() {
         val productObserver = Observer<List<Products>> { prodList ->
-            // Update the UI
             productAdapter = ListAdapter(requireActivity(), prodList)
             products_listView.adapter = productAdapter
         }

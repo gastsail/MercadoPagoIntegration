@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.gaston.meliintegration.R
-import com.gaston.meliintegration.ui.model.Products
+import com.gaston.meliintegration.data.model.Products
 
 /**
  * Created by Gastón Saillén on 05 August 2019

@@ -1,7 +1,7 @@
 package com.gaston.meliintegration.data.local
 
 import android.net.Uri
-import com.gaston.meliintegration.ui.model.Products
+import com.gaston.meliintegration.data.model.Products
 
 /**
  * Created by Gastón Saillén on 05 August 2019

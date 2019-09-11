@@ -1,11 +1,10 @@
 package com.gaston.meliintegration.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gaston.meliintegration.domain.RequestListDataUseCase
-import com.gaston.meliintegration.ui.model.Products
+import com.gaston.meliintegration.data.model.Products
 
 /**
  * Created by Gastón Saillén on 05 August 2019

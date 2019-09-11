@@ -1,4 +1,4 @@
-package com.gaston.meliintegration.ui.model
+package com.gaston.meliintegration.data.model
 
 import android.net.Uri
 

@@ -8,8 +8,7 @@ interface CheckoutContract {
     interface CheckoutContractView{
         fun applyDiscount()
         fun setupProduct()
-        fun setupCheckout(public_key:String, preference_id:String)
         fun submitCheckout()
-        fun startCheckoutProcess()
+        fun observeLiveData()
     }
 }

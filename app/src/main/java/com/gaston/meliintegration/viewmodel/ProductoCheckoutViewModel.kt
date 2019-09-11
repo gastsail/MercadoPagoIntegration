@@ -1,19 +1,18 @@
 package com.gaston.meliintegration.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.gaston.meliintegration.core.exception.Failure
 import com.gaston.meliintegration.domain.SendProductUseCase
-import kotlinx.coroutines.launch
 
 /**
  * Created by Gastón Saillén on 21 August 2019
  */
 class ProductoCheckoutViewModel: ViewModel() {
 
-    var success = MutableLiveData<Boolean>()
-    var failure = MutableLiveData<Failure>()
+    private var preference_id = MutableLiveData<String>()
+    private var failure = MutableLiveData<Failure>()
 
     private val productUseCase = SendProductUseCase()
 
@@ -24,11 +23,19 @@ class ProductoCheckoutViewModel: ViewModel() {
         }
     }
 
-    private fun handleSuccessResponse(response: Boolean){
-        this.success.value = response
+     private fun handleSuccessResponse(response: String){
+        this.preference_id.value = response
     }
 
-    private fun handleFailure(failure: Failure) {
+     private fun handleFailure(failure: Failure) {
         this.failure.value = failure
+    }
+
+    fun getPreferenceIdLiveData():LiveData<String>{
+        return preference_id
+    }
+
+    fun getFirebaseError():LiveData<Failure>{
+        return failure
     }
 }

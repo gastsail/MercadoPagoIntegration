@@ -8,13 +8,13 @@ import com.gaston.meliintegration.data.remote.SendProductRepo
 /**
  * Created by Gastón Saillén on 21 August 2019
  */
-class SendProductUseCase: UseCase<Boolean, HashMap<String, Any>>() {
+class SendProductUseCase: UseCase<String, HashMap<String, Any>>() {
 
     private val repo = SendProductRepo()
 
-    override suspend fun run(params: HashMap<String, Any>): Either<Failure, Boolean> {
+    override suspend fun run(params: HashMap<String, Any>): Either<Failure, String> {
         //TODO FIX THIS
-        return repo.setProductIntoFirestore(params)
+        return repo.returnTestPref()
     }
 
 }
