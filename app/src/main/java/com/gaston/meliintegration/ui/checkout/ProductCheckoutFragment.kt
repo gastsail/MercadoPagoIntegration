@@ -8,9 +8,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.gaston.meliintegration.R
 import com.gaston.meliintegration.base.BaseCheckoutFragment
 import com.gaston.meliintegration.core.exception.Failure
+import com.gaston.meliintegration.ui.MainFragmentDirections
+import com.gaston.meliintegration.utils.Constants
 import com.gaston.meliintegration.utils.Constants.Companion.CHECKOUT_REQUEST_CODE
 import com.gaston.meliintegration.utils.Constants.Companion.PUBLIC_KEY
 import com.gaston.meliintegration.viewmodel.ProductoCheckoutViewModel
@@ -27,6 +31,7 @@ class ProductCheckoutFragment : BaseCheckoutFragment<ProductoCheckoutViewModel>(
     private lateinit var productDesc: String
     private lateinit var productTitle: String
     private var productPrice: Int = -1
+    private var checkout: MercadoPagoCheckout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +80,15 @@ class ProductCheckoutFragment : BaseCheckoutFragment<ProductoCheckoutViewModel>(
         }
     }
 
+    fun startCheckoutProcess() {
+        checkout?.startPayment(requireActivity(), CHECKOUT_REQUEST_CODE)
+    }
+
+    fun setupCheckout(public_key:String, preference_id:String) {
+        checkout = MercadoPagoCheckout.Builder(public_key, preference_id)
+            .build()
+    }
+
     override fun observeLiveData() {
 
         val preferenceObserver = Observer<String>{ preference_id ->
@@ -88,15 +102,18 @@ class ProductCheckoutFragment : BaseCheckoutFragment<ProductoCheckoutViewModel>(
             showMessage(failure.toString())
         }
 
-        getViewModel().getFirebaseError().observe(this,errorObserver)
+        //getViewModel().getFirebaseError().observe(this,errorObserver)
         getViewModel().getPreferenceIdLiveData().observe(this,preferenceObserver)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == CHECKOUT_REQUEST_CODE) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == Constants.CHECKOUT_REQUEST_CODE) {
             if (resultCode == MercadoPagoCheckout.PAYMENT_RESULT_CODE) {
                 val payment = data?.getSerializableExtra(MercadoPagoCheckout.EXTRA_PAYMENT_RESULT) as Payment
                 showMessage(payment.paymentStatus)
+                val action = ProductCheckoutFragmentDirections.nextAction(payment.order.type)
+                findNavController().navigate(action)
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 if (data?.getStringExtra("mercadoPagoError") != null) {
                     val mercadoPagoError = JsonUtil.getInstance()
@@ -109,4 +126,6 @@ class ProductCheckoutFragment : BaseCheckoutFragment<ProductoCheckoutViewModel>(
             }
         }
     }
+
+
 }

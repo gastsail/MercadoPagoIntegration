@@ -3,7 +3,6 @@ package com.gaston.meliintegration.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.gaston.meliintegration.core.exception.Failure
 import com.gaston.meliintegration.domain.SendProductUseCase
 
 /**
@@ -11,31 +10,16 @@ import com.gaston.meliintegration.domain.SendProductUseCase
  */
 class ProductoCheckoutViewModel: ViewModel() {
 
-    private var preference_id = MutableLiveData<String>()
-    private var failure = MutableLiveData<Failure>()
-
+    private var preferenceId = MutableLiveData<String>()
     private val productUseCase = SendProductUseCase()
 
-
-    fun saveProduct(data: HashMap<String,Any>){
-        productUseCase(data){
-            it.either(::handleFailure, ::handleSuccessResponse)
+    fun saveProduct(data:HashMap<String,Any>){
+        productUseCase.sendProductToFirebase(data).observeForever { pref_id ->
+            preferenceId.value = pref_id
         }
     }
 
-     private fun handleSuccessResponse(response: String){
-        this.preference_id.value = response
-    }
-
-     private fun handleFailure(failure: Failure) {
-        this.failure.value = failure
-    }
-
     fun getPreferenceIdLiveData():LiveData<String>{
-        return preference_id
-    }
-
-    fun getFirebaseError():LiveData<Failure>{
-        return failure
+        return preferenceId
     }
 }

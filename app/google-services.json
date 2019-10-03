@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "794640587494",
+    "firebase_url": "https://melitest-5bc38.firebaseio.com",
+    "project_id": "melitest-5bc38",
+    "storage_bucket": "melitest-5bc38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794640587494:android:831cfcead460339f",
+        "android_client_info": {
+          "package_name": "com.gaston.meliintegration"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "794640587494-l37qb0ej5t9jnsq3lpim9likig8vsqt7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gaston.meliintegration",
+            "certificate_hash": "f3fca01bcf99ea50de12b817b688e9e83b348cf1"
+          }
+        },
+        {
+          "client_id": "794640587494-uoufi776gfj12574uieled7hafdoeea7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmpAqqxJ1mNmNd5HjIoOodxb9V6CvxOCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "794640587494-uoufi776gfj12574uieled7hafdoeea7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
