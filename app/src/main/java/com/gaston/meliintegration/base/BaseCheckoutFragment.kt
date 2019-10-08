@@ -59,4 +59,20 @@ abstract class BaseCheckoutFragment<T: ViewModel>: Fragment() {
         mainActivity.showToast(msg)
     }
 
+    fun enablewWriteCupon(){
+        btn_aplicarDescuento.isEnabled = true
+        cupon_etxt.isFocusable = true
+        cupon_etxt.isEnabled = true
+        cupon_etxt.isFocusableInTouchMode = true
+        cupon_etxt.setText("")
+    }
+
+    fun disableWriteCupon(){
+        btn_aplicarDescuento.isEnabled = false
+        cupon_etxt.isFocusable = false
+        cupon_etxt.isEnabled = false
+    }
+
+
+
 }

@@ -17,23 +17,8 @@
         <argument android:name="productTitle" app:argType="string"/>
         <argument android:name="productDesc" app:argType="string"/>
         <argument android:name="productPrice" app:argType="integer"/>
-        <argument android:name="imageUri" app:argType="android.net.Uri"/>
-        <action
-                android:id="@+id/nextAction"
-                app:destination="@id/congratsFragment"
-                app:popUpTo="@+id/mainFragment" />
-    </fragment>
-    <fragment android:id="@+id/congratsFragment" android:name="com.gaston.meliintegration.ui.CongratsFragment"
-            android:label="CongratsFragment"
-            tools:layout="@layout/fragment_congrats_screen">
-        <action android:id="@+id/next_action"/>
-        <action
-                android:id="@+id/action_congratsFragment_to_mainFragment4"
-                app:destination="@+id/mainFragment"
-                app:popUpTo="@id/mainFragment" />
         <argument
-                android:name="orderType"
-                app:argType="string"
-                android:defaultValue="DEFAULT_VALUE" />
+                android:name="imageUri"
+                app:argType="android.net.Uri" />
     </fragment>
 </navigation>

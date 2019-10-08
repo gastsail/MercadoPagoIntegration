@@ -1,27 +1,17 @@
 package com.gaston.meliintegration.ui.checkout
 
-import android.app.Activity
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.gaston.meliintegration.R
 import com.gaston.meliintegration.base.BaseCheckoutFragment
 import com.gaston.meliintegration.core.exception.Failure
-import com.gaston.meliintegration.ui.MainFragmentDirections
-import com.gaston.meliintegration.utils.Constants
 import com.gaston.meliintegration.utils.Constants.Companion.CHECKOUT_REQUEST_CODE
 import com.gaston.meliintegration.utils.Constants.Companion.PUBLIC_KEY
 import com.gaston.meliintegration.viewmodel.ProductoCheckoutViewModel
 import com.mercadopago.android.px.core.MercadoPagoCheckout
-import com.mercadopago.android.px.internal.util.JsonUtil
-import com.mercadopago.android.px.model.Payment
-import com.mercadopago.android.px.model.exceptions.MercadoPagoError
 import kotlinx.android.synthetic.main.fragment_product_checkout.*
 
 
@@ -53,6 +43,7 @@ class ProductCheckoutFragment : BaseCheckoutFragment<ProductoCheckoutViewModel>(
         setupProduct()
         submitCheckout()
         observeLiveData()
+        applyDiscount()
     }
 
     override fun setupProduct() {
@@ -63,7 +54,12 @@ class ProductCheckoutFragment : BaseCheckoutFragment<ProductoCheckoutViewModel>(
     }
 
     override fun applyDiscount() {
-        TODO("not implemented")
+        btn_aplicarDescuento.setOnClickListener {
+            showProgress()
+            disableWriteCupon()
+            val disscountCode = cupon_etxt.text.toString().trim()
+            getViewModel().applyCupon(disscountCode)
+        }
     }
 
     override fun submitCheckout() {
@@ -81,7 +77,7 @@ class ProductCheckoutFragment : BaseCheckoutFragment<ProductoCheckoutViewModel>(
     }
 
     fun startCheckoutProcess() {
-        checkout?.startPayment(requireActivity(), CHECKOUT_REQUEST_CODE)
+        checkout?.startPayment(requireContext(), CHECKOUT_REQUEST_CODE)
     }
 
     fun setupCheckout(public_key:String, preference_id:String) {
@@ -102,30 +98,25 @@ class ProductCheckoutFragment : BaseCheckoutFragment<ProductoCheckoutViewModel>(
             showMessage(failure.toString())
         }
 
+        val cuponCodeObserver = Observer<String> { cuponCode ->
+            if(!cuponCode.isEmpty() && cuponCode!="error"){
+                disableWriteCupon()
+                hideProgress()
+                showMessage("Cupón aplicado con éxito")
+                val percentageOff = cuponCode.trim().substring(0,2).toInt()
+                val finalPrice = productPrice - (productPrice * percentageOff / 100)
+                productPriceInfo_txtView.text = "$"+(finalPrice).toString()
+                productPrice = finalPrice
+            }else{
+                enablewWriteCupon()
+                hideProgress()
+                showMessage("Error al aplicar el cupón, es posible que no exista, vuelva a intentarlo.")
+            }
+
+        }
+
         //getViewModel().getFirebaseError().observe(this,errorObserver)
         getViewModel().getPreferenceIdLiveData().observe(this,preferenceObserver)
+        getViewModel().getCuponCodeStatus().observe(this,cuponCodeObserver)
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Constants.CHECKOUT_REQUEST_CODE) {
-            if (resultCode == MercadoPagoCheckout.PAYMENT_RESULT_CODE) {
-                val payment = data?.getSerializableExtra(MercadoPagoCheckout.EXTRA_PAYMENT_RESULT) as Payment
-                showMessage(payment.paymentStatus)
-                val action = ProductCheckoutFragmentDirections.nextAction(payment.order.type)
-                findNavController().navigate(action)
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                if (data?.getStringExtra("mercadoPagoError") != null) {
-                    val mercadoPagoError = JsonUtil.getInstance()
-                        .fromJson(data.getStringExtra("mercadoPagoError"), MercadoPagoError::class.java)
-                    showMessage(mercadoPagoError.message)
-                    //Resolve error in setupCheckout
-                } else {
-                    //Resolve canceled setupCheckout
-                }
-            }
-        }
-    }
-
-
 }
