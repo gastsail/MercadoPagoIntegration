@@ -46,7 +46,8 @@ class MainFragment : Fragment(),MainViewContract.MainView {
         setupViewModelObserver()
         products_listView.setOnItemClickListener { parent, view, position, id ->
             val selectedProduct = productAdapter.getItem(position)
-            val action = MainFragmentDirections.nextAction(selectedProduct.productTitle,selectedProduct.productDesc,selectedProduct.productPrice,selectedProduct.imageUri)
+            val action = MainFragmentDirections.nextAction(selectedProduct.productTitle,
+                selectedProduct.productDesc,selectedProduct.productPrice,selectedProduct.imageUri)
             findNavController().navigate(action)
         }
     }

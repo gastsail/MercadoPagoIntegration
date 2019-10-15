@@ -11,9 +11,12 @@ class ProductsDataSet {
     fun createProducts(): List<Products> {
 
         return listOf(
-            Products(getImageUri("proyector"),"Benq Proyector","Gran Imagen en Pequeños Espacios",56590),
-            Products(getImageUri("ps4"),"Playstation 4","Una PS4 más estilizada y pequeña",26999),
-            Products(getImageUri("tvphilips"),"Smart Tv Led Philips","Cientos de aplicaciones para navegar y disfrutar",11599)
+            Products(getImageUri("proyector"),
+                "Benq Proyector","Gran Imagen en Pequeños Espacios",56590),
+            Products(getImageUri("ps4"),
+                "Playstation 4","Una PS4 más estilizada y pequeña",26999),
+            Products(getImageUri("tvphilips"),"Smart Tv Led Philips",
+                "Cientos de aplicaciones para navegar y disfrutar",11599)
         )
     }
 

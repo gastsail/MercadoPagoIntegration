@@ -17,7 +17,7 @@ class MainViewModel(private val productsUseCase: RequestListDataUseCase):ViewMod
         getProductList()
     }
 
-    //Aca se podria reemplazar por corutinas si fuera asyncrono.
+    //Aca se podria reemplazar por corutinas.
     private fun getProductList(){
         setProducts(productsUseCase.getProductsList())
     }
@@ -29,6 +29,4 @@ class MainViewModel(private val productsUseCase: RequestListDataUseCase):ViewMod
     fun getProductListLiveData():LiveData<List<Products>>{
         return listProducts
     }
-
-
 }
