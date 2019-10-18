@@ -36,16 +36,33 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp">
 
+            <TextView
+                    android:id="@+id/productPriceDescuento_txtView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/descuento"
+                    android:textSize="25sp"
+                    android:visibility="gone"
+                    android:foreground="@drawable/tachado_texto"
+                    android:layout_centerInParent="true"
+                    android:text="$100"
+                    android:textStyle="italic"
+                    android:layout_gravity="center"/>
+
+
         <TextView
                 android:id="@+id/productPriceInfo_txtView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/productPriceDescuento_txtView"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="$100"
                 android:textColor="@color/precio"
                 android:textSize="25sp"
-                android:layout_centerInParent="true"
-                android:text="$100"
-                android:textStyle="bold"
-                android:layout_gravity="center"/>
+                android:textStyle="bold" />
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -60,10 +77,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"/>
 
-            <Button android:layout_width="wrap_content"
+            <Button
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_aplicarDescuento"
                     android:text="Aplicar"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginTop="20dp"/>
 
         </LinearLayout>

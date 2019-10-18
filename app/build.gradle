@@ -34,10 +34,11 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0-beta01'
 
     //Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:2.1.0-beta02"
-    implementation "androidx.navigation:navigation-ui-ktx:2.1.0-beta02"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.2.0-beta01"
+    implementation "androidx.navigation:navigation-ui-ktx:2.2.0-beta01"
 
     //Firebase
     implementation 'com.google.firebase:firebase-firestore:20.2.0'

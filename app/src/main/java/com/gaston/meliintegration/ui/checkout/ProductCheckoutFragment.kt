@@ -15,6 +15,8 @@ import com.gaston.meliintegration.viewmodel.ProductoCheckoutViewModel
 import com.mercadopago.android.px.core.MercadoPagoCheckout
 import kotlinx.android.synthetic.main.fragment_product_checkout.*
 import android.os.StrictMode
+import android.util.Log
+import android.view.WindowManager
 
 
 class ProductCheckoutFragment : BaseCheckoutFragment<ProductoCheckoutViewModel>(), CheckoutContract.CheckoutContractView {
@@ -29,6 +31,7 @@ class ProductCheckoutFragment : BaseCheckoutFragment<ProductoCheckoutViewModel>(
         super.onCreate(savedInstanceState)
         val builder = StrictMode.VmPolicy.Builder()
         StrictMode.setVmPolicy(builder.build())
+        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         imageUri = ProductCheckoutFragmentArgs.fromBundle(arguments!!).imageUri
         productDesc = ProductCheckoutFragmentArgs.fromBundle(arguments!!).productDesc
         productTitle = ProductCheckoutFragmentArgs.fromBundle(arguments!!).productTitle
@@ -54,6 +57,11 @@ class ProductCheckoutFragment : BaseCheckoutFragment<ProductoCheckoutViewModel>(
         submitCheckout()
         observeLiveData()
         applyDiscount()
+        listenForErrors()
+    }
+
+    fun listenForErrors(){
+        getViewModel().errorResponse()
     }
 
     override fun applyDiscount() {
@@ -98,7 +106,7 @@ class ProductCheckoutFragment : BaseCheckoutFragment<ProductoCheckoutViewModel>(
 
         val errorObserver = Observer<Failure>{ failure ->
             hideProgress()
-            showMessage(failure.toString())
+            Log.e("Transaction Error: ","$failure")
         }
 
         val cuponCodeObserver = Observer<String> { cuponCode ->
@@ -108,6 +116,8 @@ class ProductCheckoutFragment : BaseCheckoutFragment<ProductoCheckoutViewModel>(
                 showMessage("Cupón aplicado con éxito")
                 val percentageOff = cuponCode.trim().substring(0,2).toInt()
                 val finalPrice = productPrice - (productPrice * percentageOff / 100)
+                productPriceDescuento_txtView.visibility = View.VISIBLE
+                productPriceDescuento_txtView.text = productPrice.toString()
                 productPriceInfo_txtView.text = "$"+(finalPrice).toString()
                 productPrice = finalPrice
             }else{
@@ -118,7 +128,7 @@ class ProductCheckoutFragment : BaseCheckoutFragment<ProductoCheckoutViewModel>(
 
         }
 
-        //getViewModel().getFirebaseError().observe(this,errorObserver)
+        getViewModel().getErrorResponse().observe(this,errorObserver)
         getViewModel().getPreferenceIdLiveData().observe(this,preferenceObserver)
         getViewModel().getCuponCodeStatus().observe(this,cuponCodeObserver)
     }

@@ -8,7 +8,7 @@ import com.gaston.meliintegration.data.model.Products
  */
 class RequestListDataUseCase {
 
-    val productsData = ProductsDataSet()
+    private val productsData = ProductsDataSet()
 
     fun getProductsList():List<Products>{
         return productsData.createProducts()

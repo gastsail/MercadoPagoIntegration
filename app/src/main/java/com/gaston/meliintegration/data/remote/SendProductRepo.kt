@@ -3,6 +3,7 @@ package com.gaston.meliintegration.data.remote
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.gaston.meliintegration.core.exception.Failure
 import com.google.firebase.firestore.FirebaseFirestore
 /**
  * Created by Gastón Saillén on 21 August 2019
@@ -11,6 +12,7 @@ class SendProductRepo {
 
     private val db = FirebaseFirestore.getInstance()
     private val tokenData = MutableLiveData<String>()
+    private val fberror = MutableLiveData<Failure>()
 
     fun setProductIntoFirestore(data: HashMap<String, Any>): LiveData<String> {
         db.collection("melitest")
@@ -22,6 +24,7 @@ class SendProductRepo {
 
                     if (firebaseFirestoreException != null) {
                         Log.w("firestoreException", "Listen failed.", firebaseFirestoreException)
+                        fberror.value = Failure.NetworkConnection
                         return@addSnapshotListener
                     }
 
@@ -29,14 +32,17 @@ class SendProductRepo {
                         Log.d("Preference ID:", "${documentSnapshot?.getString("preference_id")}")
                         tokenData.value = documentSnapshot?.getString("preference_id")
                     } else {
-                        Log.e("Exception", "ERRORRR")
+                        fberror.value = Failure.ItemNotFoundOrEmpty
                     }
                 }
-            }
-            .addOnFailureListener {
-                Log.d("FirestoreData", "Failure: " + it.message)
+            }.addOnFailureListener {
+                fberror.value = Failure.FirebaseError
             }
 
         return tokenData
+    }
+
+    fun getTransactionErrorLiveData():LiveData<Failure>{
+        return fberror
     }
 }

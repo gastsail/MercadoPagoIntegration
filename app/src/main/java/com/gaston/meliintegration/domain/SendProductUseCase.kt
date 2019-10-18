@@ -1,6 +1,7 @@
 package com.gaston.meliintegration.domain
 
 import androidx.lifecycle.LiveData
+import com.gaston.meliintegration.core.exception.Failure
 import com.gaston.meliintegration.data.remote.SendProductRepo
 
 /**
@@ -13,4 +14,6 @@ class SendProductUseCase {
     fun sendProductToFirebase(data:HashMap<String,Any>):LiveData<String>{
         return repo.setProductIntoFirestore(data)
     }
+
+    fun getErrorResponse():LiveData<Failure>{return repo.getTransactionErrorLiveData()}
 }

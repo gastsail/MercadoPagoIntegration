@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity(){
             if (resultCode == MercadoPagoCheckout.PAYMENT_RESULT_CODE) {
                 val payment = data?.getSerializableExtra(MercadoPagoCheckout.EXTRA_PAYMENT_RESULT) as Payment
                 showToast(payment.paymentStatus)
+                if(payment.paymentStatus == "approved")
+                startActivity(Intent(this,CongratsActivity::class.java))
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 if (data?.getStringExtra("mercadoPagoError") != null) {
                     val mercadoPagoError = JsonUtil.getInstance()

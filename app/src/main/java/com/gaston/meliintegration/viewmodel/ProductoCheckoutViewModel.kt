@@ -3,6 +3,7 @@ package com.gaston.meliintegration.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.gaston.meliintegration.core.exception.Failure
 import com.gaston.meliintegration.data.remote.SearchCuponRepo
 import com.gaston.meliintegration.domain.ApplyCuponUseCase
 import com.gaston.meliintegration.domain.SendProductUseCase
@@ -14,6 +15,7 @@ class ProductoCheckoutViewModel: ViewModel() {
 
     private var preferenceId = MutableLiveData<String>()
     private var cuponCodeResponse = MutableLiveData<String>()
+    private var errorResponse = MutableLiveData<Failure>()
     private val productUseCase = SendProductUseCase()
     private val cuponUseCase = ApplyCuponUseCase()
 
@@ -35,5 +37,15 @@ class ProductoCheckoutViewModel: ViewModel() {
 
     fun getCuponCodeStatus():LiveData<String>{
         return cuponCodeResponse
+    }
+
+    fun errorResponse(){
+        productUseCase.getErrorResponse().observeForever { failureType ->
+            errorResponse.value = failureType
+        }
+    }
+
+    fun getErrorResponse():LiveData<Failure>{
+        return errorResponse
     }
 }
